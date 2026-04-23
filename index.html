@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAPPY TAILS HOME</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+<link rel="apple-touch-icon" href="2.jpg">
+
+<style>
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Helvetica', sans-serif;
+    color: white;
+    background: url('1.jpg') center/cover fixed;
+}
+
+/* DARK OVERLAY */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+    z-index:-1;
+}
+
+/* CHAT BUTTON */
+.circle-btn {
+    position: fixed;
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: rgba(0,0,0,0.6);
+    border:1px solid white;
+    color:white;
+}
+
+#chat-top { left:20px; }
+#email-top { right:20px; }
+
+/* 🔴 BADGE */
+.badge {
+    position:absolute;
+    top:-5px;
+    right:-5px;
+    background:red;
+    color:white;
+    font-size:10px;
+    padding:3px 6px;
+    border-radius:50%;
+    display:none;
+}
+
+/* HERO */
+.hero {
+    text-align:center;
+    margin:50px 0;
+}
+
+.hero h1 {
+    font-size:2rem;
+    text-shadow:0 0 20px gold;
+}
+
+/* BUTTONS */
+.button-stack {
+    max-width:350px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.btn {
+    padding:14px;
+    text-align:center;
+    border-radius:8px;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.3);
+    text-decoration:none;
+    color:white;
+}
+
+/* BOX */
+.container-box {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 10px;
+}
+
+/* GRID */
+.grid {
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    gap:10px;
+}
+
+.card {
+    background:rgba(255,255,255,0.05);
+    padding:10px;
+    border-radius:10px;
+    text-align:center;
+}
+
+/* STATS */
+.stats {
+    display:flex;
+    justify-content:space-around;
+    text-align:center;
+}
+
+.stat h3 {
+    color:gold;
+}
+
+/* FOOTER */
+footer {
+    text-align:center;
+    margin-top:40px;
+    opacity:.6;
+}
+
+/* chat badge fix */
+#chat-top .badge {
+    position:absolute;
+    top:-3px;
+    right:-3px;
+    min-width:18px;
+    height:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:10px;
+    font-weight:bold;
+    background:red;
+    color:white;
+    border-radius:50%;
+    box-shadow:0 0 10px red;
+    animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform:scale(1); }
+    50% { transform:scale(1.2); }
+    100% { transform:scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<a href="chat.html" id="chat-top" class="circle-btn">
+    <i class="fa-solid fa-comments"></i>
+    <span id="badge" class="badge">0</span>
+</a>
+
+<a href="mailto:Smithjane.a.jd@gmail.com" id="email-top" class="circle-btn">
+    <i class="fa-solid fa-envelope"></i>
+</a>
+
+<div class="hero">
+    <h1>Happy Tails Home</h1>
+    <p>ETHICAL PET ADOPTION PLATFORM</p>
+</div>
+
+<div class="button-stack">
+    <a href="gallery.html" class="btn">PET GALLERY</a>
+    <a href="care-guide.html" class="btn">CARE GUIDES</a>
+    <a href="booking.html" class="btn">BOOK A VISIT</a>
+    <a href="vets.html" class="btn">VET PARTNERS</a>
+    <a href="promise.html" class="btn">OUR PROMISE</a>
+</div>
+
+<div class="container-box">
+    <h2>Featured Pets</h2>
+    <div class="grid">
+        <div class="card">🐶 Puppy</div>
+        <div class="card">🐱 Kitten</div>
+        <div class="card">🐕 Bulldog</div>
+        <div class="card">🐾 Exotic</div>
+    </div>
+</div>
+
+<div class="container-box">
+    <h2>Adoption Perks</h2>
+    ✔ Vet Certified<br>
+    ✔ Fully Vaccinated<br>
+    ✔ 24/7 Support
+</div>
+
+<div class="container-box">
+    <h2>Our Impact</h2>
+    <div class="stats">
+        <div class="stat"><h3>500+</h3><p>Adoptions</p></div>
+        <div class="stat"><h3>98%</h3><p>Happy Clients</p></div>
+        <div class="stat"><h3>24/7</h3><p>Support</p></div>
+    </div>
+</div>
+
+<div class="container-box">
+    <h2>Safety & Policy</h2>
+    <p>All pets are verified, safe, and health-checked before adoption delivery.</p>
+</div>
+
+<div class="container-box">
+    <h2>Contact</h2>
+    <p>Email: support@happytails.com</p>
+    <p>Live chat available 24/7</p>
+</div>
+
+<footer>
+© 2026 HAPPY TAILS HOME
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, onSnapshot } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const app = initializeApp({
+  apiKey: "AIzaSyAgdvRUcN5q6r6EkNzlPU6EdNblMNjlMzg",
+  authDomain: "happytails-50138.firebaseapp.com",
+  projectId: "happytails-50138",
+});
+
+const db = getFirestore(app);
+
+/* 🔥 PWA REGISTRATION */
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log('SW failed', err));
+}
+
+/* SAFE USER ID */
+let userId = localStorage.getItem("chatUserId");
+if (!userId) {
+    userId = "USER_" + Math.floor(100 + Math.random() * 900);
+    localStorage.setItem("chatUserId", userId);
+}
+
+const badge = document.getElementById("badge");
+const ref = collection(db, "chats", userId, "messages");
+let lastRead = localStorage.getItem("lastRead") || 0;
+
+/* REALTIME BADGE */
+onSnapshot(ref, snap=>{
+    let count = 0;
+    snap.forEach(doc=>{
+        const d = doc.data();
+        if (d.sender === "admin" && d.time > lastRead) {
+            count++;
+        }
+    });
+
+    if (count > 0){
+        badge.style.display = "flex";
+        badge.innerText = count > 99 ? "99+" : count;
+    } else {
+        badge.style.display = "none";
+    }
+});
+
+/* mark read */
+document.getElementById("chat-top").onclick = ()=>{
+    localStorage.setItem("lastRead", Date.now());
+};
+</script>
+
+</body>
+</html>

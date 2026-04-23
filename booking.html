@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTH | OFFICIAL VISIT REQUEST</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { 
+            --accent: #FF00FF; 
+            --sec: #00FFFF; 
+            --bg-overlay: rgba(10, 15, 30, 0.9);
+            --glass: rgba(255,255,255,0.05); 
+        }
+
+        body { 
+            margin: 0; 
+            background: url('1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Inter', sans-serif; 
+            color: white; padding: 20px;
+        }
+
+        .overlay { background: var(--bg-overlay); min-height: 100vh; padding-bottom: 50px; }
+        .container { max-width: 650px; margin: auto; padding-top: 20px; }
+        
+        /* SHINING EFFECT */
+        .shining-text { text-shadow: 0 0 5px #fff, 0 0 10px var(--sec); color: #fff !important; text-transform: uppercase; }
+
+        /* NAVIGATION */
+        .nav-header { display: flex; align-items: center; margin-bottom: 40px; }
+        .back-btn { 
+            background: rgba(255,255,255,0.1); border: 1px solid #444; color: white; 
+            padding: 10px 20px; border-radius: 20px; cursor: pointer; 
+            display: flex; align-items: center; gap: 10px; transition: 0.3s;
+            text-decoration: none; font-size: 0.8rem;
+        }
+        .back-btn:hover { border-color: var(--sec); background: rgba(0,255,255,0.1); }
+
+        /* CONTENT SECTIONS */
+        .process-steps { margin-bottom: 40px; padding: 25px; border-left: 3px solid var(--sec); background: rgba(0,255,255,0.03); }
+        .process-steps h3 { margin-top: 0; color: var(--sec); font-size: 0.9rem; text-transform: uppercase; }
+        .process-steps ul { list-style: none; padding: 0; font-size: 0.85rem; color: #ccc; }
+        .process-steps li { margin-bottom: 12px; }
+
+        .faq-section { margin-top: 50px; padding: 20px; border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; }
+        .faq-item { margin-bottom: 20px; }
+        .faq-item h4 { color: var(--sec); margin-bottom: 5px; }
+        .faq-item p { font-size: 0.85rem; color: #aaa; line-height: 1.5; }
+
+        /* FORM */
+        .intake-card { background: var(--glass); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(15px); }
+        h1 { margin: 0 0 10px 0; font-size: 1.5rem; }
+        
+        .form-group { display: flex; flex-direction: column; margin-bottom: 20px; }
+        label { color: #888; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 8px; font-weight: bold; }
+        input, select { padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 8px; color: white; width: 100%; box-sizing: border-box; }
+        
+        .submit-btn { width: 100%; padding: 15px; background: linear-gradient(90deg, var(--accent), var(--sec)); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: black; font-size: 1rem; text-transform: uppercase; margin-top: 20px; transition: 0.3s; }
+        .submit-btn:hover { filter: brightness(1.2); }
+
+        /* MODAL */
+        .modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-box { background: #111; padding: 40px; border-radius: 20px; border: 1px solid var(--sec); text-align: center; max-width: 300px; }
+    </style>
+</head>
+<body>
+<div class="overlay">
+<div class="container">
+    
+    <div class="nav-header">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> BACK TO HOME</a>
+    </div>
+
+    <h1 class="shining-text">Schedule A Visit</h1>
+    <p style="color:#aaa; font-size: 0.9rem;">Meeting your future companion is the most important step in the adoption process.</p>
+
+    <div class="process-steps">
+        <h3>Steps to Success</h3>
+        <ul>
+            <li><i class="fa-solid fa-check" style="color:var(--sec)"></i> Complete the request form accurately.</li>
+            <li><i class="fa-solid fa-check" style="color:var(--sec)"></i> Our admin team verifies facility availability.</li>
+            <li><i class="fa-solid fa-check" style="color:var(--sec)"></i> You will receive a confirmation call or message.</li>
+            <li><i class="fa-solid fa-check" style="color:var(--sec)"></i> Arrive 10 minutes early for your session.</li>
+        </ul>
+    </div>
+
+    <div class="intake-card">
+        <form id="bookingForm">
+            <div class="form-group">
+                <label>Full Legal Name</label>
+                <input type="text" id="name" required placeholder="e.g. John Doe">
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="phone" required placeholder="080XXXXXXXX">
+            </div>
+            <div class="form-group">
+                <label>Preferred Date & Time</label>
+                <input type="datetime-local" id="visitTime" required>
+            </div>
+            <div class="form-group">
+                <label>Select Your Pet</label>
+                <select id="petSelect"><option>Loading pets...</option></select>
+            </div>
+            <div class="form-group">
+                <label>Experience Level</label>
+                <select id="experience">
+                    <option value="Beginner">First Time Owner</option>
+                    <option value="Intermediate">Owned pets previously</option>
+                    <option value="Expert">Experienced/Breeder</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">SUBMIT REQUEST</button>
+        </form>
+    </div>
+
+    <section class="faq-section">
+        <h3 class="shining-text" style="font-size: 1rem; margin-bottom: 20px;">Frequently Asked Questions</h3>
+        <div class="faq-item">
+            <h4>Can I bring a guest?</h4>
+            <p>Yes, we encourage bringing family members to ensure everyone is comfortable with the new pet.</p>
+        </div>
+        <div class="faq-item">
+            <h4>What should I bring?</h4>
+            <p>Please bring a valid ID and, if you have other pets, a photo of your current home setup.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Is there a fee?</h4>
+            <p>No, the meet-and-greet session is free, though adoption fees apply upon finalizing the process.</p>
+        </div>
+    </section>
+</div>
+</div>
+
+<div class="modal-overlay" id="successModal">
+    <div class="modal-box">
+        <i class="fa-solid fa-circle-check" style="font-size: 3rem; color: var(--sec);"></i>
+        <h3 class="shining-text" style="font-size: 1.2rem; margin: 20px 0;">REQUEST RECEIVED</h3>
+        <p style="color:#ccc; margin-bottom: 20px;">Our admin will review your visit and notify you shortly.</p>
+        <button class="submit-btn" onclick="window.location.reload()">DONE</button>
+    </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAgdvRUcN5q6r6EkNzlPU6EdNblMNjlMzg",
+    authDomain: "happytails-50138.firebaseapp.com",
+    projectId: "happytails-50138",
+    storageBucket: "happytails-50138.firebasestorage.app",
+    messagingSenderId: "377084680099",
+    appId: "1:377084680099:web:cb2a3c5f7ce482dd97ac16"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  async function loadPets() {
+      const select = document.getElementById('petSelect');
+      try {
+          const snapshot = await getDocs(collection(db, 'pets'));
+          select.innerHTML = "";
+          snapshot.forEach(doc => {
+              const opt = document.createElement('option');
+              opt.value = doc.data().name;
+              opt.textContent = doc.data().name;
+              select.appendChild(opt);
+          });
+      } catch (e) {
+          select.innerHTML = "<option>Error loading list</option>";
+      }
+  }
+
+  document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = "UPLOADING...";
+      
+      try {
+          await addDoc(collection(db, 'bookings'), {
+              name: document.getElementById('name').value,
+              phone: document.getElementById('phone').value,
+              time: document.getElementById('visitTime').value,
+              pet: document.getElementById('petSelect').value,
+              experience: document.getElementById('experience').value,
+              status: "Pending",
+              createdAt: serverTimestamp()
+          });
+          document.getElementById('successModal').style.display = "flex";
+      } catch (e) {
+          alert("Error: " + e.message);
+          btn.textContent = "SUBMIT REQUEST";
+      }
+  });
+
+  loadPets();
+</script>
+</body>
+</html>

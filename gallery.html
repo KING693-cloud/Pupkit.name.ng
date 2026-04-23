@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY TAILS | PREMIUM ADOPTION</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-gold: #FFD700;
+            --neon-blue: #00d4ff;
+            --bg-dark: #050505;
+        }
+
+        body { 
+            margin: 0; 
+            font-family: 'Outfit', sans-serif; 
+            background: var(--bg-dark);
+            background-image: url('1.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #fff;
+        }
+
+        .overlay { 
+            background: rgba(0,0,0,0.85);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container { max-width: 600px; margin: auto; }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: white;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .pet-card {
+            background: rgba(255,255,255,0.03);
+            padding: 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff4757;
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 900;
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        .pet-img {
+            width: 100%;
+            height: 120px; 
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .pet-name { font-size: 1rem; font-weight: 700; margin-bottom: 2px; }
+        .pet-price { font-size: 0.95rem; color: var(--neon-gold); font-weight: 900; margin-bottom: 8px; }
+
+        .pet-desc {
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .btn-buy {
+            width: 100%; 
+            padding: 10px; 
+            border: none; 
+            border-radius: 25px;
+            background: var(--neon-blue); 
+            color: black; 
+            font-weight: 900; 
+            cursor: pointer; 
+            transition: transform 0.2s;
+        }
+        
+        .btn-buy:active { transform: scale(0.95); }
+
+        /* LOADER ANIMATION */
+        .loader-container {
+            grid-column: span 2;
+            text-align: center;
+            padding: 50px;
+        }
+        .spinner {
+            width: 40px; height: 40px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid var(--neon-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .section {
+            margin-top: 20px;
+            padding: 25px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 20px;
+            border: 1px solid rgba(255,215,0,0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="overlay">
+    <div class="container">
+
+        <div class="nav-bar">
+            <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> BACK</a>
+            <div style="font-weight:900; color:var(--neon-gold); letter-spacing: 1px;">HAPPY TAILS</div>
+        </div>
+
+        <div id="gallery-grid" class="gallery-grid">
+            <div class="loader-container"><div class="spinner"></div></div>
+        </div>
+
+        <div class="section">
+            <h2 style="color: var(--neon-gold); font-size: 1rem; margin-bottom: 15px;">Why Choose Us?</h2>
+            <div class="feature-item" style="margin-bottom: 10px;">✔ 100% Health Verified & Vaccinated</div>
+            <div class="feature-item" style="margin-bottom: 10px;">✔ Safe & Secure Payment Gateway</div>
+            <div class="feature-item" style="margin-bottom: 10px;">✔ Reliable Fast Delivery System</div>
+            <div class="feature-item">✔ 24/7 Dedicated Support Chat</div>
+        </div>
+
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const app = initializeApp({
+        apiKey: "AIzaSyAgdvRUcN5q6r6EkNzlPU6EdNblMNjlMzg",
+        authDomain: "happytails-50138.firebaseapp.com",
+        projectId: "happytails-50138",
+    });
+
+    const db = getFirestore(app);
+    const grid = document.getElementById("gallery-grid");
+
+    window.startInquiry = (name, price) => {
+        const payload = { name, price, time: Date.now() };
+        localStorage.setItem("pendingBuy", JSON.stringify(payload));
+        location.href = "chat.html";
+    };
+
+    async function init() {
+        try {
+            const q = query(collection(db,"pets"), orderBy("timestamp","desc"));
+            const snap = await getDocs(q);
+            const pets = [];
+            snap.forEach(d => pets.push(d.data()));
+            renderPets(pets);
+        } catch (e) {
+            grid.innerHTML = `<div style="text-align:center; padding:20px; color:red;">Failed to load pets</div>`;
+        }
+    }
+
+    function renderPets(pets) {
+        grid.innerHTML = "";
+        pets.forEach(pet => {
+            const discount = Math.floor(Math.random() * 20) + 10;
+            const desc = pet.characteristics || "Friendly, playful, and ready for a forever home.";
+
+            const card = document.createElement("div");
+            card.className = "pet-card";
+            card.innerHTML = `
+                <div class="discount-badge">${discount}% OFF</div>
+                <img src="${pet.pic}" class="pet-img">
+                <div class="pet-name">${pet.name}</div>
+                <div class="pet-price">₦${pet.amount}</div>
+                <div class="pet-desc">${desc}</div>
+                <button class="btn-buy" onclick="startInquiry('${pet.name}','${pet.amount}')">ADOPT NOW</button>
+            `;
+            grid.appendChild(card);
+        });
+    }
+    init();
+</script>
+
+</body>
+</html>

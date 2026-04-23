@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTH | VET DIRECTORY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-pink: #FF00FF;
+            --neon-cyan: #00FFFF;
+            --bg-overlay: rgba(10, 15, 30, 0.9);
+            --glass: rgba(255,255,255,0.05);
+        }
+
+        body { 
+            margin: 0; padding: 0; 
+            font-family: 'Inter', sans-serif; 
+            background: url('1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white; min-height: 100vh;
+        }
+
+        .overlay { background: var(--bg-overlay); min-height: 100vh; padding-bottom: 50px; }
+        .container { max-width: 1000px; margin: auto; padding: 20px; }
+        
+        /* SHINING EFFECT */
+        .shining-text {
+            text-shadow: 0 0 5px rgba(255,255,255,0.5), 0 0 10px var(--neon-cyan);
+            color: #fff !important; text-transform: uppercase;
+        }
+
+        /* NAVIGATION */
+        .nav-sticky { 
+            position: sticky; top: 0; background: rgba(0, 0, 0, 0.6); 
+            padding: 20px; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px); display: flex; justify-content: space-between; align-items: center;
+        }
+        .btn-nav { text-decoration: none; color: #fff; border: 1px solid var(--neon-cyan); padding: 10px 20px; border-radius: 50px; font-weight: bold; font-size: 0.8rem; transition: 0.3s; }
+        .btn-nav:hover { background: var(--neon-cyan); color: #000; }
+
+        /* HEADER */
+        .header { text-align: center; margin: 40px 0; }
+        .header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+
+        /* GRID */
+        .vet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .vet-card { 
+            background: var(--glass); border: 1px solid rgba(255,255,255,0.1); 
+            padding: 25px; border-radius: 20px; position: relative; transition: 0.3s;
+        }
+        .vet-card:hover { border-color: var(--neon-cyan); }
+        .color-strip { height: 4px; width: 100%; border-radius: 2px; margin-bottom: 20px; }
+        .clinic-name { font-size: 1.2rem; font-weight: bold; margin-bottom: 5px; }
+        .detail-row { display: flex; align-items: center; margin-bottom: 10px; color: #ddd; font-size: 0.85rem; }
+        .detail-row i { width: 25px; color: var(--neon-cyan); }
+        .call-btn { 
+            display: block; width: 100%; padding: 12px; margin-top: 20px; 
+            background: rgba(255,255,255,0.05); color: white; text-align: center; 
+            border-radius: 10px; font-weight: bold; text-decoration: none; font-size: 0.9rem;
+        }
+
+        /* EXTENDED CONTENT */
+        .footer-tips { margin-top: 60px; padding: 40px; background: rgba(0,0,0,0.3); border-radius: 20px; border: 1px solid #333; }
+        .footer-tips h3 { color: var(--neon-cyan); margin-bottom: 20px; }
+        .footer-tips li { margin-bottom: 10px; color: #aaa; font-size: 0.9rem; }
+
+        /* MODAL */
+        .modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-box { background: #111; padding: 40px; border-radius: 20px; border: 1px solid var(--neon-cyan); text-align: center; max-width: 300px; }
+    </style>
+</head>
+<body>
+<div class="overlay">
+
+    <div class="nav-sticky">
+        <a href="index.html" class="btn-nav"><i class="fa-solid fa-arrow-left"></i> BACK TO PORTAL</a>
+        <div style="font-weight: bold; opacity: 0.7; font-size: 0.8rem;">HAPPY TAILS HOME</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="shining-text">Vet Partners</h1>
+            <p style="color: #888;">Your trusted circle of veterinary professionals.</p>
+        </div>
+
+        <div id="vetGrid" class="vet-grid">
+            <p style="text-align:center; color:#666;">Loading partners...</p>
+        </div>
+
+        <div class="footer-tips">
+            <h3><i class="fa-solid fa-lightbulb"></i> Puppy Vet Visit Tips</h3>
+            <ul>
+                <li><strong>First Visit:</strong> Bring your puppy's vaccination card if you have one.</li>
+                <li><strong>Carrier Safety:</strong> Always keep your puppy in a secure carrier while in transit.</li>
+                <li><strong>Questions:</strong> Write down any concerns about your puppy's diet or sleep habits before you arrive.</li>
+                <li><strong>Emergencies:</strong> If you see the "⚠️ EMERGENCY" badge, that clinic is equipped for urgent care.</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal-overlay" id="customModal">
+    <div class="modal-box">
+        <i class="fa-solid fa-circle-check" style="font-size: 3rem; color: var(--neon-cyan);"></i>
+        <h3 class="shining-text" style="font-size: 1.2rem; margin: 20px 0;">SYSTEM READY</h3>
+        <p style="color:#aaa; font-size: 0.9rem;">Directory sync complete. Please choose a clinic to proceed.</p>
+        <button class="btn-nav" onclick="document.getElementById('customModal').style.display='none'">CLOSE</button>
+    </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+  import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAgdvRUcN5q6r6EkNzlPU6EdNblMNjlMzg",
+    authDomain: "happytails-50138.firebaseapp.com",
+    projectId: "happytails-50138",
+    storageBucket: "happytails-50138.firebasestorage.app",
+    messagingSenderId: "377084680099",
+    appId: "1:377084680099:web:cb2a3c5f7ce482dd97ac16"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  onSnapshot(collection(db, 'vets'), (snapshot) => {
+      const grid = document.getElementById('vetGrid');
+      grid.innerHTML = "";
+      
+      snapshot.forEach((doc, index) => {
+          const d = doc.data();
+          const hue = (index * 137.5) % 360; 
+          const color = `hsl(${hue}, 80%, 60%)`;
+          
+          const card = document.createElement('div');
+          card.className = "vet-card";
+          card.innerHTML = `
+            <div class="color-strip" style="background:${color}"></div>
+            <div class="clinic-name">${d.clinicName}</div>
+            <div style="color:#888; font-size: 0.75rem; margin-bottom:15px;">Dr. ${d.doctorName || 'Staff'}</div>
+            <div class="detail-row"><i class="fa-solid fa-location-dot"></i> ${d.location}</div>
+            <div class="detail-row"><i class="fa-solid fa-clock"></i> ${d.hours || 'Standard Hours'}</div>
+            <div class="detail-row"><i class="fa-solid fa-stethoscope"></i> ${d.specialty || 'General Care'}</div>
+            ${d.emergency === 'Yes' ? `<div style="background:${color}; color:black; display:inline-block; padding:3px 10px; border-radius:5px; font-size:0.7rem; font-weight:bold; margin-top:5px;">⚠️ EMERGENCY</div>` : ''}
+            <a href="tel:${d.phone}" class="call-btn" style="border:1px solid ${color};">CALL ${d.clinicName.toUpperCase()}</a>
+          `;
+          grid.appendChild(card);
+      });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARE GUIDES | HAPPY TAILS HOME</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- GLOBAL THEME --- */
+        :root {
+            --neon-pink: #FF00FF;
+            --neon-cyan: #00FFFF;
+            --bg-overlay: rgba(10, 15, 30, 0.85);
+        }
+
+        body { 
+            margin: 0; padding: 0; 
+            font-family: 'Inter', sans-serif; 
+            /* CHANGE '1.jpg' TO ANY FILENAME YOU WANT */
+            background: url('1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .overlay {
+            background: var(--bg-overlay);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* --- SHINING EFFECT --- */
+        .shining-text {
+            text-shadow: 0 0 5px rgba(255,255,255,0.5), 0 0 10px var(--neon-cyan);
+            color: #fff !important;
+            text-transform: uppercase;
+        }
+
+        /* --- NAVIGATION --- */
+        .nav-header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 40px; padding: 20px; 
+            background: rgba(0,0,0,0.3); border-radius: 12px; 
+            backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);
+        }
+        .back-btn { 
+            text-decoration: none; color: white; padding: 10px 20px; 
+            border: 1px solid var(--neon-pink); border-radius: 5px; 
+            transition: 0.3s; font-size: 0.8rem;
+        }
+        .back-btn:hover { background: var(--neon-pink); }
+
+        /* --- ACCORDION CONTAINER --- */
+        .guide-container { width: 100%; max-width: 700px; margin: 0 auto; }
+        
+        details {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        details:hover { border-color: var(--neon-cyan); }
+        
+        summary {
+            font-size: 0.9rem; text-transform: uppercase;
+            color: #FFF; outline: none; list-style: none;
+            display: flex; justify-content: space-between; align-items: center;
+            font-weight: bold; cursor: pointer;
+        }
+        summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--neon-cyan); font-size: 0.7rem; }
+        details[open] summary::after { content: '\f077'; }
+
+        p.content {
+            font-size: 0.85rem; line-height: 1.6;
+            color: #DDD; margin-top: 15px; border-top: 1px solid #333; padding-top: 15px;
+        }
+
+        /* --- EXTENDED CONTENT --- */
+        .quick-tips {
+            background: rgba(255,255,255,0.05);
+            padding: 20px; border-radius: 8px; margin-top: 40px;
+        }
+        .admin-footer {
+            margin-top: 60px; text-align: center;
+            padding: 20px; color: #555; font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+<div class="overlay">
+
+    <div class="nav-header">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> BACK</a>
+        <h1 class="shining-text" style="font-size: 1.1rem; margin:0;">CARE GUIDES</h1>
+    </div>
+
+    <div class="guide-container">
+
+        <details>
+            <summary>Nutrition & Feeding</summary>
+            <p class="content">Proper nutrition is the foundation of a healthy life. Always prioritize high-protein, vet-recommended formulas. Monitor weight changes and never share human food containing toxic ingredients like onions, garlic, or chocolate.</p>
+        </details>
+
+        <details>
+            <summary>Grooming & Hygiene</summary>
+            <p class="content">Grooming is your primary health check. Check for lumps, bumps, or parasites every time you brush. Maintain ear cleanliness to prevent infections and keep nails trimmed to avoid walking discomfort.</p>
+        </details>
+
+        <details>
+            <summary>Socialization Protocols</summary>
+            <p class="content">Early exposure is essential. Introduce new stimuli—sights, sounds, and surfaces—gradually. Always reward calm, curious behavior. Never force interactions if your pet appears fearful.</p>
+        </details>
+
+        <details>
+            <summary>Emergency Preparedness</summary>
+            <p class="content">Keep a "Pet Emergency Go-Bag" ready. It should contain 3 days of food, water, medical records, a spare leash, and a comfort toy. Knowing where your nearest 24/7 animal hospital is can save minutes that matter in a crisis.</p>
+        </details>
+
+        <details>
+            <summary>Seasonal Care</summary>
+            <p class="content">In summer, watch for heatstroke; never leave pets in cars and ensure constant water access. In winter, protect paw pads from harsh de-icing salts and provide warm shelter for outdoor-active breeds.</p>
+        </details>
+
+        <details>
+            <summary>Travel Safety</summary>
+            <p class="content">Traveling requires planning. Use a secure, crash-tested crate for car rides. Always ensure your pet has up-to-date microchip information. Stop every 2-3 hours for hydration and a quick walk.</p>
+        </details>
+
+        <details>
+            <summary>Mental Enrichment</summary>
+            <p class="content">A tired pet is a happy pet. Use puzzle toys, scent games, and training sessions to stimulate their minds. Physical exercise is only half the battle; cognitive stimulation is just as vital.</p>
+        </details>
+
+        <details>
+            <summary>Behavioral Analysis</summary>
+            <p class="content">Understand your pet's body language. A wagging tail doesn't always mean happiness; look at the body tension. Lip licking or yawning can be signs of stress or confusion rather than just hunger or sleepiness.</p>
+        </details>
+
+        <details>
+            <summary>Senior Pet Care</summary>
+            <p class="content">As pets age, their needs change. Increase the frequency of vet visits to check for kidney and joint health. Consider softer bedding and orthopedic support to help them sleep comfortably.</p>
+        </details>
+
+        <details>
+            <summary>Common Training Myths</summary>
+            <p class="content">Myth: "You can't teach an old dog new tricks." Truth: Senior pets are often easier to train because they have longer attention spans. Consistency is the only requirement for success at any age.</p>
+        </details>
+
+        <div class="quick-tips">
+            <h3 class="shining-text" style="font-size: 0.9rem;">Expert Quick Tips</h3>
+            <div style="font-size: 0.8rem; margin-bottom: 5px;"><i class="fa-solid fa-check"></i> Always have fresh water available.</div>
+            <div style="font-size: 0.8rem; margin-bottom: 5px;"><i class="fa-solid fa-check"></i> Use positive reinforcement only.</div>
+            <div style="font-size: 0.8rem; margin-bottom: 5px;"><i class="fa-solid fa-check"></i> Brush teeth weekly.</div>
+            <div style="font-size: 0.8rem;"><i class="fa-solid fa-check"></i> Watch for sudden behavioral changes.</div>
+        </div>
+
+    </div>
+
+    <div class="admin-footer">
+        <p><i class="fa-solid fa-shield-halved"></i> SYSTEM: CARE_GUIDE_PRO_V3.0</p>
+        <p>&copy; 2026 HAPPY TAILS HOME | PROFESSIONAL PET CARE</p>
+    </div>
+
+</div>
+</body>
+</html>
