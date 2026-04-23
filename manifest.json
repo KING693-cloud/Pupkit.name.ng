@@ -1,6 +1,6 @@
 {
-  "name": "Happy Tails Home",
-  "short_name": "HappyTails",
+  "name": "PUPKIT",
+  "short_name": "Admin",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#000000",
@@ -9,8 +9,8 @@
     {
       "src": "2.jpg",
       "sizes": "192x192",
-      "type": "image/jpeg"
+      "type": "image/jpeg",
+      "purpose": "maskable"
     }
   ]
 }
-
